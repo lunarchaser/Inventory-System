@@ -3,9 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="script/script.js"></script>
+    <title>Inventory System</title>
   </head>
-  <body>
-    <h1>I love you!</h1>
+  <body onload="doShowAll()">
+    <div class="tab">
+      <button
+        class="tablinks"
+        onclick="openCity(event, 'Stocks')"
+        id="defaultOpen"
+      >
+        Stocks
+      </button>
+      <!---
+      <button class="tablinks" onclick="openCity(event, 'PendingOrders')">
+        Pending Orders
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Outgoing')">
+        Outgoing
+      </button>
+    -->
+      <button
+        id = "addButton"
+        class="tablinks"
+        style="float: right;"
+        onclick="showAdd()"
+      >
+        + Add Item
+      </button>
+    </div>
+
+    <div id="Stocks" class="tabcontent">
+      <div id="PlayArea" style = "display: none;">
+        <table id = "addTable">
+          <tr>
+            <td><b>Item:</b><input type="text" name="name" /></td>
+            <td><b>Quantity:</b><input type="number" name="data" /></td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="button" value="Save" onclick="SaveItem()" />
+              <input type="button" value="Modify" onclick="ModifyItem()" />
+              <input type="button" value="Remove" onclick="RemoveItem()" />
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="items_table">
+        <h2>Stock List</h2>
+        <table id="list"></table>
+        <p>
+          <label
+            ><input type="button" value="Clear" onclick="ClearAll()" />
+            <i>* Removes all items</i></label
+          >
+        </p>
+      </div>
+    </div>
+    <!---
+
+    <div id="PendingOrders" class="tabcontent">
+      Future Updates
+    </div>
+
+    <div id="Outgoing" class="tabcontent">
+      Future Updates
+    </div>
+        -->
+    </div>
   </body>
+  <script>
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
 </html>
